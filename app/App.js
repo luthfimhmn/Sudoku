@@ -9,22 +9,10 @@ import { Provider, useSelector } from 'react-redux'
 import store from './src/store'
 
 export default function App() {
-
-  const [board, setBoard] = useState([])
-
-  useEffect(() => {
-    fetch('https://sugoku.herokuapp.com/board?difficulty=easy')
-      .then(res => res.json())
-      .then(res => {
-        setBoard(res.board)})
-      .catch(err => console.log(err))
-  }, [])
-
   return (
     <Provider store={store}>
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <Text>{board}</Text>
         <Home>
         </Home>
         <Board>
