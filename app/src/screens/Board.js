@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBoard, setBoardAsync, updateBoard } from '../store/actions';
+import { setBoardAsync, updateBoard } from '../store/actions';
 
 import axios from 'axios'
 import { encodeParams } from '../helpers/encodeBoard';
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     backgroundColor: '#fff3cc',
-    alignItems: 'stretch',
+    width: Dimensions.get("window").width -50,
     justifyContent: 'space-around',
     marginTop: 40
   }
