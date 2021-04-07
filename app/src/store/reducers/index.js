@@ -1,9 +1,3 @@
-// import { combineReducers} from 'redux'
-// import questionReducer from './question'
-// const reducer = combineReducers({
-//   test: questionReducer
-// })
-
 const initialState = {
   data: []
 }
@@ -11,8 +5,7 @@ const initialState = {
 function reducer (state = initialState, action) {
   switch (action.type) {
     case "data/setData":
-      // console.log(action.payload);
-      return {...state, data: state.data.concat(action.payload)}
+      return {...state, data: action.payload}
     default:
       return state
   }

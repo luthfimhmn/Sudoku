@@ -1,38 +1,72 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View , Button, TextInput} from 'react-native';
-import { useSelector } from 'react-redux';
+import { StyleSheet, Text, View , Button, TextInput, Dimensions} from 'react-native';
 
 function Home (props) {
   const [username, setUsername] = useState('')
-  const [difficulty, setDifficulty] = useState('easy')
+
+  function onPressButton (level) {
+    props.navigation.push('Board', {
+      username,
+      difficulty: level
+    })
+  }
 
   return (
-    <View>
-      <Text>Ini halaman Home</Text>
-      <Text>Input your Username :</Text>
+    <View style={Styles.container}>
+      <Text style={Styles.text}>Game Sudoku</Text>
+      <Text style={Styles.textMini}>Input your Username :</Text>
       <TextInput
         style={Styles.input}
         onChangeText={(text) => setUsername(text)}
         value={username}
+        textAlign="center"
+        textAlignVertical="center"
       />
-      <Button
-        onPress={() => props.navigation.push('Board', {
-          username,
-          difficulty
-        })}
-        title="To Board"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
+      <View style={Styles.buttonContainer}>
+        <Text style={Styles.textMini}>Choose Difficulty :</Text>
+        <Button
+          onPress={() => onPressButton('easy')}
+          title="Easy"
+        />
+        <Button
+          onPress={() => onPressButton('medium')}
+          title="Medium"
+        />
+        <Button
+          onPress={() => onPressButton('hard')}
+          title="Hard"
+        />
+      </View>
     </View>
   )
 }
 
 const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 32,
+    backgroundColor: '#f5DD42',
+    alignItems: 'stretch',
+    justifyContent: 'space-evenly'
+  },
   input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1
+    borderBottomWidth: 2,
+    height: 50
+  },
+  text: {
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 40
+  },
+  textMini: {
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 20
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    marginTop: 100
   }
 })
 

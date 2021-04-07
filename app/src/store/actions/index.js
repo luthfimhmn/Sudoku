@@ -1,16 +1,19 @@
-export function setQuestion (payload) {
+import axios from 'axios'
+
+export function setBoard (payload) {
   return {
     type: 'data/setData',
     payload
   }
 }
 
-export function setQuestionAsync () {
+export function setBoardAsync (payload) {
   return (dispatch) => {
-    fetch('https://sugoku.herokuapp.com/board?difficulty=easy')
-      .then(res => res.json())
-      .then(res => {
-        dispatch(setQuestion(res.board))})
+    axios({
+      method: 'GET',
+      url: `https://sugoku.herokuapp.com/board?difficulty=${payload}`
+    })
+      .then(res => dispatch(setBoard(res.data.board)))
       .catch(err => console.log(err))
   }
 }
