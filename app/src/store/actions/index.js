@@ -7,6 +7,13 @@ export function setBoard (payload) {
   }
 }
 
+export function updateBoard (payload) {
+  return {
+    type: 'data/updateData',
+    payload
+  }
+}
+
 export function setBoardAsync (payload) {
   return (dispatch) => {
     axios({

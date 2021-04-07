@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBoard, setBoardAsync } from '../store/actions';
+import { setBoard, setBoardAsync, updateBoard } from '../store/actions';
 
 import axios from 'axios'
 import { encodeParams } from '../helpers/encodeBoard';
 
 function Board (props) {
   const difficulty = props.route.params.difficulty
+  const boardBegin = useSelector(state=> state.dataBegin)
   const board = useSelector(state => state.data)
   const dispatch = useDispatch()
 
@@ -18,7 +19,7 @@ function Board (props) {
   function onChangeText (text, rowIndex, colIndex) {
     const newBoard = JSON.parse(JSON.stringify(board))
     newBoard[rowIndex][colIndex] = +text
-    dispatch(setBoard(newBoard))
+    dispatch(updateBoard(newBoard))
   }
 
   function solveBoard () {
@@ -74,6 +75,7 @@ function Board (props) {
                           key={"" + rowIndex + colIndex}
                           textAlign="center"
                           keyboardType={'numeric'}
+                          editable={boardBegin[rowIndex][colIndex] === 0 ? true : false}
                         />
                       )
                     })

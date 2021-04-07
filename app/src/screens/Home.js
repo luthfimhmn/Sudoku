@@ -5,7 +5,10 @@ function Home (props) {
   const [username, setUsername] = useState('')
 
   function onPressButton (level) {
-    props.navigation.push('Board', {
+    if(username === '') {
+      return alert('Username is required')
+    }
+    props.navigation.navigate('Board', {
       username,
       difficulty: level
     })
