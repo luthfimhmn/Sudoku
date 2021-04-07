@@ -31,7 +31,7 @@ function Board (props) {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      data: encodeParams({ board })
+      data: encodeParams({ boardBegin })
     })
       .then(response => {
         dispatch(updateBoard(response.data.solution))
