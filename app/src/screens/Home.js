@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View , Button, TextInput} from 'react-native';
 
 function Home (props) {
   const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    setUsername('')
+  }, [])
 
   function onPressButton (level) {
     if(username === '') {
