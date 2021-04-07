@@ -32,7 +32,7 @@ function Board (props) {
       data: encodeParams({ board })
     })
       .then(response => {
-        dispatch(setBoard(response.data.solution))
+        dispatch(updateBoard(response.data.solution))
       })
       .catch(console.log)
   }
@@ -58,7 +58,7 @@ function Board (props) {
   return (
     <>
       <View style={styles.container}>
-        <Text>{props.route.params.username}</Text>
+        <Text style={styles.textLarge}>Let's Play</Text>
         <View>
           {
             board.map((row, rowIndex) => {
@@ -107,6 +107,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  textLarge : {
+    fontSize: 30
+  },
   row: {
     flexDirection: 'row'
   },
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff3cc',
     alignItems: 'stretch',
+    justifyContent: 'space-around',
     marginTop: 40
   }
 });
