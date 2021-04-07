@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
-import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Text, TextInput, View } from 'react-native';
+import { Button } from 'react-native-elements'
 import { useDispatch, useSelector } from 'react-redux';
 import { setBoardAsync, updateBoard } from '../store/actions';
+import Styles from './Styles'
 
 import axios from 'axios'
 import { encodeParams } from '../helpers/encodeBoard';
@@ -57,18 +59,18 @@ function Board (props) {
 
   return (
     <>
-      <View style={styles.container}>
-        <Text style={styles.textLarge}>Let's Play</Text>
+      <View style={Styles.container}>
+        <Text style={Styles.textLarge}>Let's Play</Text>
         <View>
           {
             board.map((row, rowIndex) => {
               return (
-                <View style={styles.row} key={rowIndex}>
+                <View style={Styles.row} key={rowIndex}>
                   {
                     row.map((col, colIndex) => {
                       return (
                         <TextInput
-                          style={styles.box}
+                          style={boardBegin[rowIndex][colIndex] !== 0 ? Styles.box : Styles.boxBegin}
                           maxLength={1}
                           value={col === 0 ? "" : String(col)}
                           onChangeText={(text) => onChangeText(text, rowIndex, colIndex)}
@@ -85,12 +87,14 @@ function Board (props) {
             })
           }
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={Styles.buttonContainer}>
         <Button
+          buttonStyle={Styles.button}
           onPress={() => solveBoard()}
           title="Solve"
         />
         <Button
+          buttonStyle={Styles.button}
           onPress={() => validateBoard()}
           title="Validate"
         />
@@ -99,34 +103,5 @@ function Board (props) {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff3cc',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textLarge : {
-    fontSize: 30
-  },
-  row: {
-    flexDirection: 'row'
-  },
-  box: {
-    width: (Dimensions.get("window").width - 50)/9,
-    height: (Dimensions.get("window").width - 50)/9,
-    borderColor: "black",
-    color: "black",
-    borderWidth: 1
-  },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: '#fff3cc',
-    width: Dimensions.get("window").width -50,
-    justifyContent: 'space-around',
-    marginTop: 40
-  }
-});
 
 export default Board;

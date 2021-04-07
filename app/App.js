@@ -14,9 +14,9 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name ="Welcome to Sugoku" component={Home}/>
-          <Stack.Screen name ="Board" component={Board}/>
-          <Stack.Screen name ="Finish" component={Finish}/>
+          <Stack.Screen name ="Welcome to Sugoku" component={Home} options={{headerShown: false}}/>
+          <Stack.Screen name ="Board" component={Board} options={{headerShown: false}}/>
+          <Stack.Screen name ="Finish" component={Finish} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

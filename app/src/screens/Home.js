@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View , Button, TextInput} from 'react-native';
+import { Text, View , TextInput} from 'react-native';
+import { Button } from 'react-native-elements'
+import Styles from './Styles'
 
 function Home (props) {
   const [username, setUsername] = useState('')
@@ -32,14 +34,17 @@ function Home (props) {
       <View style={Styles.buttonContainer}>
         <Text style={Styles.textMini}>Choose Difficulty :</Text>
         <Button
+          buttonStyle={Styles.button}
           onPress={() => onPressButton('easy')}
           title="Easy"
         />
         <Button
+          buttonStyle={Styles.button}
           onPress={() => onPressButton('medium')}
           title="Medium"
         />
         <Button
+          buttonStyle={Styles.button}
           onPress={() => onPressButton('hard')}
           title="Hard"
         />
@@ -47,34 +52,5 @@ function Home (props) {
     </View>
   )
 }
-
-const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 32,
-    backgroundColor: '#f5DD42',
-    alignItems: 'stretch',
-    justifyContent: 'space-evenly'
-  },
-  input: {
-    borderBottomWidth: 2,
-    height: 50
-  },
-  text: {
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: 40
-  },
-  textMini: {
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: 20
-  },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-    marginTop: 100
-  }
-})
 
 export default Home;

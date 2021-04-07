@@ -1,32 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native'
+import {View, Text} from 'react-native'
+import { Button } from 'react-native-elements'
+import Styles from './Styles'
 
 function Finish (props) {
-
   return (
     <View style={Styles.container}>
       <Text style={Styles.text}>Congratulations {props.route.params.username}!</Text>
       <Text style={Styles.text}>You have finished the game</Text>
       <Button
+        buttonStyle={Styles.button}
         title="Back to Home"
         onPress={() => props.navigation.replace('Welcome to Sugoku')}
       />
     </View>
   )
 }
-
-const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5DD42',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: 40
-  }
-})
 
 export default Finish;
